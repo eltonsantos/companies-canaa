@@ -17,8 +17,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_02_043548) do
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "category"
-    t.string "cep"
+    t.string "zipcode"
     t.string "address"
+    t.string "number"
     t.string "neighborhood"
     t.string "city"
     t.string "state"

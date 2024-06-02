@@ -3,8 +3,9 @@ class CreateCompanies < ActiveRecord::Migration[7.1]
     create_table :companies do |t|
       t.string :name
       t.string :category
-      t.string :cep
+      t.string :zipcode
       t.string :address
+      t.string :number
       t.string :neighborhood
       t.string :city
       t.string :state

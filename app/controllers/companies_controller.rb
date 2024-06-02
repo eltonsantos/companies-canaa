@@ -45,6 +45,11 @@ class CompaniesController < ApplicationController
     redirect_to companies_url, notice: "Company was successfully destroyed.", status: :see_other
   end
 
+  def get_address_by_zipcode
+    address_info = ViaCepService.get_address(params[:zipcode])
+    render json: address_info
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
@@ -53,6 +58,6 @@ class CompaniesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def company_params
-      params.require(:company).permit(:name, :category, :cep, :address, :neighborhood, :city, :state, :description)
+      params.require(:company).permit(:name, :category, :zipcode, :address, :number, :neighborhood, :city, :state, :description)
     end
 end

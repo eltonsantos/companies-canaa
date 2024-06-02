@@ -13,7 +13,7 @@
 
   <div class="my-5">
     <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :name, class: "block shadow  rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
@@ -22,28 +22,33 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :cep %>
-    <%= form.text_field :cep, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :zipcode %>
+    <%= form.text_field :zipcode, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :address %>
-    <%= form.text_field :address, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :address, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :number %>
+    <%= form.text_field :number, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :neighborhood %>
-    <%= form.text_field :neighborhood, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :neighborhood, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
   </div>
 
   <div class="my-5">
     <%= form.label :city %>
-    <%= form.text_field :city, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :city, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
   </div>
 
   <div class="my-5">
     <%= form.label :state %>
-    <%= form.text_field :state, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :state, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
   </div>
 
   <div class="my-5">
