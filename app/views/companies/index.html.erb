@@ -6,16 +6,34 @@
   <% content_for :title, "Companies" %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl text-red-600 bg-slate-500">Empresas</h1>
+    <h1 class="font-bold text-4xl text-blue-800 px-5 py-3 rounded-lg">Empresas</h1>
     <%= link_to "Nova empresa", new_company_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="companies" class="min-w-full">
-    <% @companies.each do |company| %>
-      <%= render company %>
-      <p>
-        <%= link_to "Show this company", company, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-blue-100 mt-5">
+      <thead class="bg-blue-400">
+        <tr>
+          <th class="px-6 py-3 text-left text-blue-900 font-bold">Nome</th>
+          <th class="px-6 py-3 text-left text-blue-900 font-bold">Categoria</th>
+          <th class="px-6 py-3 text-left text-blue-900 font-bold">Endereço</th>
+          <th class="px-6 py-3 text-left text-blue-900 font-bold">Bairro</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-blue-100">
+        <% @companies.each.with_index do |company, index| %>
+          <tr class="<%= index.odd? ? 'bg-blue-50' : 'bg-blue-100' %>">
+            <td class="px-6 py-4 whitespace-nowrap"><%= company.name %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= company.category %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= company.address %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= company.neighborhood %></td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <%= link_to "Detalhes", company, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-blue-600 hover:bg-blue-200" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

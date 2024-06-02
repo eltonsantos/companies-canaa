@@ -1,10 +1,55 @@
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
     <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice">
+        <%= notice %>
+      </p>
     <% end %>
 
-    <%= render @company %>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Nome:</strong>
+      <%= @company.name %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Categoria:</strong>
+      <%= @company.category %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">CEP:</strong>
+      <%= @company.zipcode %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Endereço:</strong>
+      <%= @company.address %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Número:</strong>
+      <%= @company.number %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Bairro:</strong>
+      <%= @company.neighborhood %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Cidade:</strong>
+      <%= @company.city %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1 read">Estado:</strong>
+      <%= @company.state %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Descrição:</strong>
+      <%= @company.description %>
+    </p>
 
     <%= link_to "Edit this company", edit_company_path(@company), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Back to companies", companies_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
