@@ -1,62 +1,73 @@
-<%= form_with(model: company, class: "contents") do |form| %>
-  <% if company.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+<div data-controller="map">
 
-      <ul>
-        <% company.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+  <%= form_with(model: company, class: "contents") do |form| %>
+    <% if company.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+        <ul>
+          <% company.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="my-5">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :category %>
+      <%= form.text_field :category, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :zipcode %>
+      <%= form.text_field :zipcode, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :address_map %>
+      <%= form.text_field :address_map, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :number %>
+      <%= form.text_field :number, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :neighborhood %>
+      <%= form.text_field :neighborhood, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
+    </div>
+
+    <h4>Digite o endereço para mostrá-lo no mapa:</h4>
+
+    <div data-map-target="container" style="min-height: 300px"></div>
+
+    <%= form.hidden_field :address, data: {"map-target": "address"} %>
+    <%= form.hidden_field :latitude, data: {"map-target": "latitude"} %>
+    <%= form.hidden_field :longitude, data: {"map-target": "longitude"} %>
+
+    <div class="my-5">
+      <%= form.label :city %>
+      <%= form.text_field :city, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :state %>
+      <%= form.text_field :state, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :description %>
+      <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="inline">
+      <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
     </div>
   <% end %>
-
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow  rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :category %>
-    <%= form.text_field :category, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :zipcode %>
-    <%= form.text_field :zipcode, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :address %>
-    <%= form.text_field :address, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :number %>
-    <%= form.text_field :number, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :neighborhood %>
-    <%= form.text_field :neighborhood, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :city %>
-    <%= form.text_field :city, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :state %>
-    <%= form.text_field :state, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :description %>
-    <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-<% end %>
+</div>

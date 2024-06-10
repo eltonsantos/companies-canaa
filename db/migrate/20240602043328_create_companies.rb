@@ -7,6 +7,9 @@ class CreateCompanies < ActiveRecord::Migration[7.1]
       t.string :address
       t.string :number
       t.string :neighborhood
+      t.string :address_map
+      t.float :latitude
+      t.float :longitude
       t.string :city
       t.string :state
       t.text :description

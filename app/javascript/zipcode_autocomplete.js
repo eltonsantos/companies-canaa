@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const zipcodeInput = document.getElementById('company_zipcode');
-  const addressInput = document.getElementById('company_address');
+  const addressInput = document.getElementById('company_address_map');
   const neighborhoodInput = document.getElementById('company_neighborhood');
   const cityInput = document.getElementById('company_city');
   const stateInput = document.getElementById('company_state');

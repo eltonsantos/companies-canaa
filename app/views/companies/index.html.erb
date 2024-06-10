@@ -10,7 +10,7 @@
     <%= link_to "Nova empresa", new_company_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div class="overflow-x-auto">
+  <div class="">
     <table class="min-w-full divide-y divide-blue-100 mt-5">
       <thead class="bg-blue-400">
         <tr>
@@ -23,15 +23,18 @@
       </thead>
       <tbody class="divide-y divide-blue-100">
         <% @companies.each.with_index do |company, index| %>
-          <tr class="<%= index.odd? ? 'bg-blue-50' : 'bg-blue-100' %>">
-            <td class="px-6 py-4 whitespace-nowrap"><%= company.name %></td>
-            <td class="px-6 py-4 whitespace-nowrap"><%= company.category %></td>
-            <td class="px-6 py-4 whitespace-nowrap"><%= company.address %></td>
-            <td class="px-6 py-4 whitespace-nowrap"><%= company.neighborhood %></td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <%= link_to "Detalhes", company, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-blue-600 hover:bg-blue-200" %>
-            </td>
-          </tr>
+          <div data-controller="map" data-map-readonly-value="true">
+            <tr class="<%= index.odd? ? 'bg-blue-50' : 'bg-blue-100' %>">
+              <td class="px-6 py-4 whitespace-nowrap"><%= company.name %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= company.category %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= company.address_map %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= company.neighborhood %></td>
+
+              <td class="px-6 py-4 whitespace-nowrap">
+                <%= link_to "Detalhes", company, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-blue-600 hover:bg-blue-200" %>
+              </td>
+            </tr>
+          </div>
         <% end %>
       </tbody>
     </table>
