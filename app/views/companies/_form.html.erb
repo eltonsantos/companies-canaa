@@ -1,4 +1,4 @@
-<div data-controller="map">
+<div data-controller="map" style="position: relative; z-index: 1;">
 
   <%= form_with(model: company, class: "contents") do |form| %>
     <% if company.errors.any? %>
@@ -69,6 +69,15 @@
     <div class="my-5">
       <%= form.label :state, "Estado" %>
       <%= form.text_field :state, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
+    </div>
+
+    <div id="mb-3">
+      <%= form.fields_for :phones do |phones_fields| %>
+        <%= render partial: "phone_fields", locals: { f: phones_fields } %>
+      <% end %>    
+      <div class="field">
+        <%= link_to_add_association("Adicionar Telefone", form, :phones, class: "bg-green-400 text-white rounded-lg py-2 px-4") %>
+      </div>
     </div>
 
     <div class="my-5">

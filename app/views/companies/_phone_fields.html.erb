@@ -1,0 +1,13 @@
+<div class="nested-fields flex mb-3 items-center">
+  <div class="w-1/3 mr-2">
+    <%= f.label :phone_type, "Tipo do telefone", class: 'block text-sm font-medium text-gray-700' %>
+    <%= f.select :phone_type, Phone.phone_types.keys.map { |w| [w.humanize, w] }, {}, class: 'block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md' %>
+  </div>
+
+  <div class="w-1/3 mr-2">
+    <%= f.label :phone_number, "Número", class: 'block text-sm font-medium text-gray-700' %>
+    <%= f.text_field :phone_number, class: 'block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md' %>
+  </div>
+  <%= link_to_remove_association "Delete", f, class:"bg-red-400 mt-5 text-white rounded-lg py-2 px-4" %>
+ 
+</div>

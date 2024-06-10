@@ -49,8 +49,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_02_000001) do
   end
 
   create_table "phones", force: :cascade do |t|
-    t.string "number"
-    t.string "type"
+    t.integer "phone_type"
+    t.string "phone_number"
     t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
