@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :categories
+  resources :members
   resources :companies
 
   post '/companies/get_address_by_zipcode', to: 'companies#get_address_by_zipcode'

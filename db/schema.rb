@@ -10,44 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_02_043548) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_02_000001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
-    t.string "category"
     t.string "zipcode"
     t.string "address"
     t.string "number"
     t.string "neighborhood"
     t.string "address_map"
+    t.string "complement"
     t.float "latitude"
     t.float "longitude"
     t.string "city"
     t.string "state"
     t.text "description"
+    t.bigint "category_id", null: false
+    t.bigint "member_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_companies_on_category_id"
+    t.index ["member_id"], name: "index_companies_on_member_id"
   end
 
   create_table "members", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_members_on_company_id"
   end
 
   create_table "phones", force: :cascade do |t|
     t.string "number"
+    t.string "type"
     t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_phones_on_company_id"
   end
 
-  add_foreign_key "members", "companies"
+  add_foreign_key "companies", "categories"
+  add_foreign_key "companies", "members"
   add_foreign_key "phones", "companies"
 end

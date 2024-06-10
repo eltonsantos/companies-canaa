@@ -3,7 +3,6 @@ class CreateMembers < ActiveRecord::Migration[7.1]
     create_table :members do |t|
       t.string :name
       t.string :email
-      t.references :company, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -14,17 +14,22 @@
     <% end %>
 
     <div class="my-5">
-      <%= form.label :name %>
+      <%= form.label :name, "Nome da empresa" %>
       <%= form.text_field :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
     <div class="my-5">
-      <%= form.label :category %>
-      <%= form.text_field :category, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.label :category_id, "Categoria" %>
+      <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Selecione uma categoria" }, { class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"} %>
     </div>
 
     <div class="my-5">
-      <%= form.label :zipcode %>
+      <%= form.label :member_id, "Membro dono ou responsável" %>
+      <%= form.collection_select :member_id, Member.all, :id, :name, { prompt: "Selecione uma membro" }, { class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"} %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :zipcode, "CEP" %>
       <%= form.text_field :zipcode, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
@@ -34,13 +39,18 @@
     </div>
 
     <div class="my-5">
-      <%= form.label :number %>
+      <%= form.label :number, "Número" %>
       <%= form.text_field :number, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
     <div class="my-5">
-      <%= form.label :neighborhood %>
+      <%= form.label :neighborhood, "Bairro" %>
       <%= form.text_field :neighborhood, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :complement, "Complemento" %>
+      <%= form.text_field :complement, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
     <h4>Digite o endereço para mostrá-lo no mapa:</h4>
@@ -52,17 +62,17 @@
     <%= form.hidden_field :longitude, data: {"map-target": "longitude"} %>
 
     <div class="my-5">
-      <%= form.label :city %>
+      <%= form.label :city, "Cidade" %>
       <%= form.text_field :city, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
     </div>
 
     <div class="my-5">
-      <%= form.label :state %>
+      <%= form.label :state, "Estado" %>
       <%= form.text_field :state, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
     </div>
 
     <div class="my-5">
-      <%= form.label :description %>
+      <%= form.label :description, "Descrição" %>
       <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
