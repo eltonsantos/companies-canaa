@@ -1,62 +1,69 @@
-<div data-controller="map" data-map-readonly-value="true">
-  <div class="mx-auto md:w-2/3 w-full flex">
-    <div class="mx-auto">
-      <% if notice.present? %>
-        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice">
-          <%= notice %>
-        </p>
-      <% end %>
-
-      <p class="my-5">
-        <strong class="block font-medium mb-1">Nome:</strong>
-        <%= @company.name %>
+<div class="mx-auto md:w-2/3 w-full flex flex-col mt-16">
+  <div class="mx-auto bg-white p-6 rounded-lg shadow-md">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice">
+        <%= notice %>
       </p>
+    <% end %>
 
-      <p class="my-5">
-        <strong class="block font-medium mb-1">Categoria:</strong>
-        <%= @company.category %>
-      </p>
-
-      <p class="my-5">
-        <strong class="block font-medium mb-1">CEP:</strong>
-        <%= @company.zipcode %>
-      </p>
-
-      <p class="my-5">
-        <strong class="block font-medium mb-1">Endereço:</strong>
-        <%= @company.address %>
-      </p>
-
-      <p class="my-5">
-        <strong class="block font-medium mb-1">Número:</strong>
-        <%= @company.number %>
-      </p>
-
-      <p class="my-5">
-        <strong class="block font-medium mb-1">Bairro:</strong>
-        <%= @company.neighborhood %>
-      </p>
-
-      <p class="my-5">
-        <strong class="block font-medium mb-1">Cidade:</strong>
-        <%= @company.city %>
-      </p>
-
-      <p class="my-5">
-        <strong class="block font-medium mb-1 read">Estado:</strong>
-        <%= @company.state %>
-      </p>
-
-      <p class="my-5">
-        <strong class="block font-medium mb-1">Descrição:</strong>
-        <%= @company.description %>
-      </p>
-
-      <%= link_to "Edit this company", edit_company_path(@company), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= link_to "Back to companies", companies_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <div class="inline-block ml-2">
-        <%= button_to "Destroy this company", @company, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <div class="my-5 relative" style="z-index: 1;">
+      <div data-controller="map" data-map-readonly-value="true" style="position: relative; z-index: 1;">
+        <div data-map-target="container" style="min-height: 300px; z-index: 1;"></div>
+        <input type="hidden" data-map-target="latitude" value="<%= @company.latitude %>">
+        <input type="hidden" data-map-target="longitude" value="<%= @company.longitude %>">
       </div>
     </div>
+
+    <div class="my-5">
+      <h1 class="block text-[2.5rem] leading-5 font-bold text-blue-800"><%= @company.name %></h1>
+    </div>
+
+    <ul class="my-5 bg-gray-50 p-4 rounded-lg shadow-inner">
+      <li class="mb-3">
+        <strong class="block font-medium mb-1 text-blue-800">Categoria:</strong>
+        <%= @company.category %>
+      </li>
+
+      <li class="mb-3">
+        <strong class="block font-medium mb-1 text-blue-800">CEP:</strong>
+        <%= @company.zipcode %>
+      </li>
+
+      <li class="mb-3">
+        <strong class="block font-medium mb-1 text-blue-800">Endereço:</strong>
+        <%= @company.address_map %>
+      </li>
+
+      <li class="mb-3">
+        <strong class="block font-medium mb-1 text-blue-800">Número:</strong>
+        <%= @company.number %>
+      </li>
+
+      <li class="mb-3">
+        <strong class="block font-medium mb-1 text-blue-800">Bairro:</strong>
+        <%= @company.neighborhood %>
+      </li>
+
+      <li class="mb-3">
+        <strong class="block font-medium mb-1 text-blue-800">Cidade:</strong>
+        <%= @company.city %>
+      </li>
+
+      <li class="mb-3">
+        <strong class="block font-medium mb-1 text-blue-800">Estado:</strong>
+        <%= @company.state %>
+      </li>
+
+      <li class="mb-3">
+        <strong class="block font-medium mb-1 text-blue-800">Descrição:</strong>
+        <%= @company.description %>
+      </li>
+    </ul>
+
+    <div class="flex mt-10 space-x-4">
+      <%= link_to "Editar esta empresa", edit_company_path(@company), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-blue-600 hover:bg-blue-200" %>
+      <%= link_to "Voltar para empresas", companies_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-blue-600 hover:bg-blue-200" %>
+      <%= button_to "Deletar esta empresa", @company, method: :delete, class: "rounded-lg py-3 px-5 bg-red-100 inline-block font-medium text-red-600 hover:bg-red-200" %>
+    </div>
   </div>
-</di>
+</div>

@@ -6,7 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
     <link
@@ -23,8 +22,25 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-gray-100">
+    <nav class="fixed top-0 left-0 w-full bg-blue-800 text-white shadow-lg z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex">
+            <div class="flex-shrink-0 flex items-center">
+              <%= link_to "Empresas dos membros | Canaã", root_path, class: "text-white text-2xl font-bold" %>
+            </div>
+            <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+              <%= link_to "Empresas", companies_path, class: "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-white hover:border-white hover:text-white" %>
+              <%= link_to "Usuários", "#", class: "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-white hover:border-white hover:text-white" %>
+              <%= link_to "Categorias", "#", class: "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-white hover:border-white hover:text-white" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="pt-16"></div>
+    <main class="container mx-auto px-5 flex">
       <%= yield %>
     </main>
   </body>
