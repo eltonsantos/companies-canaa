@@ -35,7 +35,7 @@
 
     <div class="my-5">
       <%= form.label :address_map, "Endereço" %>
-      <%= form.text_field :address_map, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
+      <%= form.text_field :address_map, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100", readonly: true %>
     </div>
 
     <div class="my-5">
@@ -45,7 +45,7 @@
 
     <div class="my-5">
       <%= form.label :neighborhood, "Bairro" %>
-      <%= form.text_field :neighborhood, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
+      <%= form.text_field :neighborhood, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100", readonly: true %>
     </div>
 
     <div class="my-5">
@@ -63,12 +63,12 @@
 
     <div class="my-5">
       <%= form.label :city, "Cidade" %>
-      <%= form.text_field :city, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
+      <%= form.text_field :city, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100", readonly: true %>
     </div>
 
     <div class="my-5">
       <%= form.label :state, "Estado" %>
-      <%= form.text_field :state, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full", readonly: true %>
+      <%= form.text_field :state, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100", readonly: true %>
     </div>
 
     <div id="mb-3">
@@ -91,3 +91,21 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const zipcodeInput = document.getElementById('company_zipcode');
+    const fieldsToChange = ['company_address_map', 'company_neighborhood', 'company_city', 'company_state'];
+    const numberField = document.getElementById('company_number');
+
+    zipcodeInput.addEventListener('change', function() {
+      if (zipcodeInput.value.length === 8) {
+        fieldsToChange.forEach(function(fieldId) {
+          const field = document.getElementById(fieldId);
+          field.classList.remove('bg-gray-100');
+        });
+        numberField.focus();
+      }
+    });
+  });
+</script>
