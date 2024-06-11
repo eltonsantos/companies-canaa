@@ -8,6 +8,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1
   def show
+    @phones = Phone.where(params[:company_id])
   end
 
   # GET /companies/new
