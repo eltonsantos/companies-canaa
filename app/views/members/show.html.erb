@@ -4,12 +4,22 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
-    <%= render @member %>
+    <ul class="my-5 bg-gray-50 p-4 rounded-lg shadow-inner">
+      <li class="mb-3">
+        <strong class="block font-medium mb-1 text-blue-800">Nome:</strong>
+        <%= @member.name %>
+      </li>
 
-    <%= link_to "Edit this member", edit_member_path(@member), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to members", members_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <li class="mb-3">
+        <strong class="block font-medium mb-1 text-blue-800">Email:</strong>
+        <%= @member.email %>
+      </li>
+    </ul>
+
+    <%= link_to "Editar membro", edit_member_path(@member), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:text-blue-800" %>
+    <%= link_to "Voltar para membros", members_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:text-blue-800" %>
     <div class="inline-block ml-2">
-      <%= button_to "Destroy this member", @member, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to "Remover membro", @member, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-600 text-white font-medium hover:bg-red-700" %>
     </div>
   </div>
 </div>
