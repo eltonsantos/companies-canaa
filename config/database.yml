@@ -82,6 +82,4 @@ test:
 #
 production:
   <<: *default
-  database: companies_canaa_production
-  username: companies_canaa
-  password: <%= ENV["COMPANIES_CANAA_DATABASE_PASSWORD"] %>
+  database: <% ENV["DATABASE_URL"] %>
