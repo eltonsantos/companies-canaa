@@ -41,14 +41,36 @@
               </div>
             </div>
             <div class="flex items-center space-x-4">
-              <div class="text-sm font-medium">
-                <%= current_user.name %>, <%= current_user.email %>
-              </div>
-              <div>
-                <%= form_tag destroy_user_session_path, method: :delete, class: "bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline cursor-pointer" do %>
-                  <%= submit_tag "Sair", class: "btn btn-outline-success cursor-pointer" %>
+              <% if user_signed_in? %>
+                <div class="text-sm font-medium">
+                  <%= current_user.name %>, <%= current_user.email %>
+                </div>
+                <div>
+                  <%= form_tag destroy_user_session_path, method: :delete, class: "bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline cursor-pointer" do %>
+                    <%= submit_tag "Sair", class: "btn btn-outline-success cursor-pointer" %>
+                  <% end %>
+                </div>
+              <% else %>
+                <%= link_to "Entrar", new_user_session_path, class: "btn btn-outline-success cursor-pointer" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="pt-20"></div>
+    <% else %>
+      <nav class="fixed top-0 left-0 w-full bg-white text-gray-700 shadow-lg z-50" style="height: 80px;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between h-full mt-3">
+            <div class="flex">
+              <div class="flex-shrink-0 flex items-center">
+                <%= link_to root_path do %>
+                  <img src="<%= asset_path('cropped-logo-canaa-2020.png') %>" alt="Empresas dos membros | Canaã" width="187" height="50" />
                 <% end %>
               </div>
+            </div>
+            <div class="flex items-center space-x-4">
+              <%= link_to "Entrar", new_user_session_path, class: "btn btn-outline-success cursor-pointer" %>             
             </div>
           </div>
         </div>
