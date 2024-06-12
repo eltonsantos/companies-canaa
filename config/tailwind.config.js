@@ -12,6 +12,12 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      padding: {
+        '1.2': '1.2rem',
+      },
+      margin: {
+        '-1.2': '-1.2rem',
+      }
     },
   },
   plugins: [

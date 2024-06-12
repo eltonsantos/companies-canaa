@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>CompaniesCanaa</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="<%= asset_path('cropped-fav-32x32.png') %>" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -19,21 +20,24 @@
 
     <%= javascript_include_tag 'zipcode_autocomplete' %>
     <%= javascript_importmap_tags %>
+
   </head>
 
   <body class="bg-gray-100">
     <% if user_signed_in? %>
-      <nav class="fixed top-0 left-0 w-full bg-blue-800 text-white shadow-lg z-50">
+      <nav class="fixed top-0 left-0 w-full bg-white text-gray-700 shadow-lg z-50" style="height: 80px;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between h-16">
+          <div class="flex justify-between h-full mt-3">
             <div class="flex">
               <div class="flex-shrink-0 flex items-center">
-                <%= link_to "Empresas dos membros | Canaã", root_path, class: "text-white text-2xl font-bold" %>
+                <%= link_to root_path do %>
+                  <img src="<%= asset_path('cropped-logo-canaa-2020.png') %>" alt="Empresas dos membros | Canaã" width="187" height="50" />
+                <% end %>
               </div>
               <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                <%= link_to "Empresas", companies_path, class: "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-white hover:border-white hover:text-white" %>
-                <%= link_to "Membros", members_path, class: "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-white hover:border-white hover:text-white" %>
-                <%= link_to "Categorias", categories_path, class: "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-white hover:border-white hover:text-white" %>
+                <%= link_to "Empresas", companies_path, class: "inline-flex items-center px-1 pt-1 pb-1.2 -mb-1.2 border-b-2 border-transparent text-sm font-medium text-[#6a6c74] hover:border-[#1e73be] hover:text-[#1e73be]" %>
+                <%= link_to "Membros", members_path, class: "inline-flex items-center px-1 pt-1 pb-1.2 -mb-1.2 border-b-2 border-transparent text-sm font-medium text-[#6a6c74] hover:border-[#1e73be] hover:text-[#1e73be]" %>
+                <%= link_to "Categorias", categories_path, class: "inline-flex items-center px-1 pt-1 pb-1.2 -mb-1.2 border-b-2 border-transparent text-sm font-medium text-[#6a6c74] hover:border-[#1e73be] hover:text-[#1e73be]" %>
               </div>
             </div>
             <div class="flex items-center space-x-4">
@@ -49,7 +53,7 @@
           </div>
         </div>
       </nav>
-      <div class="pt-16"></div>
+      <div class="pt-20"></div>
     <% end %>
     <main class="container mx-auto px-5">
       <%= yield %>

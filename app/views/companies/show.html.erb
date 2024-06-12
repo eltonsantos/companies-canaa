@@ -1,83 +1,78 @@
-<div class="mx-auto md:w-3/4 w-full flex flex-col mt-16">
-  <div class=" bg-white p-6 rounded-lg shadow-md">
+<div class="mx-auto md:w-3/4 w-full flex flex-col mt-10">
+  <div class="bg-white p-6 rounded-lg shadow-md">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice">
         <%= notice %>
       </p>
     <% end %>
 
-    <div class="my-5 relative" style="z-index: 1;">
-      <div data-controller="map" data-map-readonly-value="true" style="position: relative; z-index: 1;">
-        <div data-map-target="container" style="min-height: 400px; z-index: 1;"></div>
-        <input type="hidden" data-map-target="latitude" value="<%= @company.latitude %>">
-        <input type="hidden" data-map-target="longitude" value="<%= @company.longitude %>">
+    <div class="mb-5">
+      <h1 class="text-[2.5rem] leading-5 font-bold text-blue-800"><%= @company.name %></h1>
+      <h4 class="text-xl font-medium text-gray-600 mt-4"><%= @company.category.name %></h4>
+    </div>
+
+    <div class="border-b border-gray-200 my-5"></div>
+
+    <div class="flex flex-wrap">
+      <div class="w-full md:w-5/12 pr-6">
+        <ul class="bg-gray-50 p-4 rounded-lg shadow-inner">
+          <li class="mb-3">
+            <strong class="block font-medium mb-1 text-blue-800">Dono/Responsável:</strong>
+            <%= @company.member.name %>
+          </li>
+          <li class="mb-3">
+            <strong class="block font-medium mb-1 text-blue-800">Telefone:</strong>
+            <% @phones.each do |phone| %>
+              <div class="mb-3">
+                <strong><%= phone.phone_number %></strong> - <span><%= phone.phone_type %></span>
+              </div>
+            <% end %>
+          </li>
+          <li class="mb-3">
+            <strong class="block font-medium mb-1 text-blue-800">CEP:</strong>
+            <%= @company.zipcode %>
+          </li>
+          <li class="mb-3">
+            <strong class="block font-medium mb-1 text-blue-800">Endereço:</strong>
+            <%= @company.address_map %>
+          </li>
+          <li class="mb-3">
+            <strong class="block font-medium mb-1 text-blue-800">Número:</strong>
+            <%= @company.number %>
+          </li>
+          <li class="mb-3">
+            <strong class="block font-medium mb-1 text-blue-800">Bairro:</strong>
+            <%= @company.neighborhood %>
+          </li>
+          <li class="mb-3">
+            <strong class="block font-medium mb-1 text-blue-800">Complemento:</strong>
+            <%= @company.complement %>
+          </li>
+          <li class="mb-3">
+            <strong class="block font-medium mb-1 text-blue-800">Cidade:</strong>
+            <%= @company.city %>
+          </li>
+          <li class="mb-3">
+            <strong class="block font-medium mb-1 text-blue-800">Estado:</strong>
+            <%= @company.state %>
+          </li>
+          <li class="mb-3">
+            <strong class="block font-medium mb-1 text-blue-800">Descrição:</strong>
+            <%= @company.description %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="w-full md:w-7/12 pl-6">
+        <div class="relative h-full" style="z-index: 1;">
+          <div data-controller="map" data-map-readonly-value="true" style="position: relative; z-index: 1; height: 100%;">
+            <div data-map-target="container" style="min-height: 700px; z-index: 1;"></div>
+            <input type="hidden" data-map-target="latitude" value="<%= @company.latitude %>">
+            <input type="hidden" data-map-target="longitude" value="<%= @company.longitude %>">
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="my-5">
-      <h1 class="block text-[2.5rem] leading-5 font-bold text-blue-800"><%= @company.name %></h1>
-    </div>
-
-    <ul class="my-5 bg-gray-50 p-4 rounded-lg shadow-inner">
-      <li class="mb-3">
-        <strong class="block font-medium mb-1 text-blue-800">Categoria:</strong>
-        <%= @company.category.name %>
-      </li>
-
-      <li class="mb-3">
-        <strong class="block font-medium mb-1 text-blue-800">Dono/Responsável:</strong>
-        <%= @company.member.name %>
-      </li>
-
-      <li class="mb-3">
-        <strong class="block font-medium mb-1 text-blue-800">Telefone:</strong>
-        <% @phones.each do |phone| %>
-          <li class="mb-3">
-            <strong><%= phone.phone_number %></strong> - <span><%= phone.phone_type %></span>
-          </li>
-        <% end %>
-      </li>
-
-      <li class="mb-3">
-        <strong class="block font-medium mb-1 text-blue-800">CEP:</strong>
-        <%= @company.zipcode %>
-      </li>
-
-      <li class="mb-3">
-        <strong class="block font-medium mb-1 text-blue-800">Endereço:</strong>
-        <%= @company.address_map %>
-      </li>
-
-      <li class="mb-3">
-        <strong class="block font-medium mb-1 text-blue-800">Número:</strong>
-        <%= @company.number %>
-      </li>
-
-      <li class="mb-3">
-        <strong class="block font-medium mb-1 text-blue-800">Bairro:</strong>
-        <%= @company.neighborhood %>
-      </li>
-
-      <li class="mb-3">
-        <strong class="block font-medium mb-1 text-blue-800">Complemento:</strong>
-        <%= @company.complement %>
-      </li>
-
-      <li class="mb-3">
-        <strong class="block font-medium mb-1 text-blue-800">Cidade:</strong>
-        <%= @company.city %>
-      </li>
-
-      <li class="mb-3">
-        <strong class="block font-medium mb-1 text-blue-800">Estado:</strong>
-        <%= @company.state %>
-      </li>
-
-      <li class="mb-3">
-        <strong class="block font-medium mb-1 text-blue-800">Descrição:</strong>
-        <%= @company.description %>
-      </li>
-    </ul>
 
     <div class="flex mt-10 space-x-4">
       <%= link_to "Editar empresa", edit_company_path(@company), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-blue-600 hover:bg-blue-200" %>
