@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   
   resources :categories
   resources :members
-  resources :companies
+  resources :companies do
+    collection do
+      get :export_to_xls_companies
+    end
+  end
 
   post '/companies/get_address_by_zipcode', to: 'companies#get_address_by_zipcode'
 

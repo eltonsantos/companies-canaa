@@ -52,6 +52,16 @@ class CompaniesController < ApplicationController
     render json: address_info
   end
 
+  def export_to_xls_companies
+    @companies = Company.includes(:category, :member)
+
+    respond_to do |format|
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; "filename=lista-empresas-canaa.xlsx"'
+      }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company

@@ -1,0 +1,18 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Empresas") do |sheet|
+  sheet.add_row ["Nome", "Categoria", "Endereço", "Bairro", "Número", "Cidade", "Estado", "Dono/Responsável"]
+
+  @companies.each do |company|
+    sheet.add_row [
+      company.name,
+      company.category.name,
+      company.address_map,
+      company.neighborhood,
+      company.number,
+      company.city,
+      company.state,
+      company.member.name
+    ]
+  end
+end

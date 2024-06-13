@@ -28,7 +28,10 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl text-[#1e73be] px-5 py-3 rounded-l">Empresas</h1>
     <% if user_signed_in? %>
-      <%= link_to "Nova empresa", new_company_path, class: "rounded-lg py-3 px-5 bg-[#1e73be] text-white block font-medium hover:bg-blue-600", data: { turbo: false } %>
+      <div class="flex space-x-2">
+        <%= link_to "Nova empresa", new_company_path, class: "rounded-lg py-3 px-5 bg-[#1e73be] text-white block font-medium hover:bg-blue-600", data: { turbo: false } %>
+        <%= link_to "Exportar lista para Excel", export_to_xls_companies_companies_path(format: :xlsx), class: "rounded-lg py-3 px-5 bg-yellow-500 text-white block font-medium hover:bg-yellow-600" %>
+      </div>
     <% end %>
   </div>
 
