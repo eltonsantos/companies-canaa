@@ -57,7 +57,7 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       format.xlsx {
-        response.headers['Content-Disposition'] = 'attachment; "filename=lista-empresas-canaa.xlsx"'
+        response.headers['Content-Disposition'] = "attachment; filename=lista-de-empresas-canaa.xlsx"
       }
     end
   end
