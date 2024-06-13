@@ -3,39 +3,65 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
+  <div class="bg-white p-6 rounded-lg shadow-md mb-3" data-controller="form-submit">
+    <h3 class="font-bold text-[#1e73be] py-3 rounded-l mb-4">Buscar empresas</h3>
+    <div class="container mx-auto">
+      <%= search_form_for @q, url: companies_path, method: :get, class: 'flex flex-wrap -mx-2', id: 'companies-search-form', data: { target: 'form-submit.form' } do |f| %>
+        <div class="w-full md:w-1/3 px-2 mb-4">
+          <%= f.collection_select :name_eq, Company.all, :name, :name, { prompt: "Selecione a empresa" }, { class: 'shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full', onchange: 'this.form.submit();' } %>     
+        </div>
+        <div class="w-full md:w-1/3 px-2 mb-4">     
+          <%= f.collection_select :category_id_eq, Category.all, :id, :name, { prompt: "Selecione uma categoria" }, { class: 'shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full', onchange: 'this.form.submit();' } %>
+        </div>
+        <div class="w-full md:w-1/3 px-2 mb-4">     
+          <%= f.collection_select :member_id_eq, Member.all, :id, :name, { prompt: "Selecione um membro/responsável" }, { class: 'shadow rounded-md border border-gray-400 outline-none px-3 py-2 w-full', onchange: 'this.form.submit();' } %>
+        </div>
+        <div class="w-full flex justify-end px-2 mb-4">
+          <%= button_to "Limpar Filtros", companies_path, method: :get, class: 'bg-gray-200 text-[#6a6c74] hover:bg-gray-300 rounded-lg py-2 px-4', data: { action: 'form-submit#clearFilters' } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
   <% content_for :title, "Empresas" %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl text-blue-800 px-5 py-3 rounded-l">Empresas</h1>
+    <h1 class="font-bold text-4xl text-[#1e73be] px-5 py-3 rounded-l">Empresas</h1>
     <% if user_signed_in? %>
-      <%= link_to "Nova empresa", new_company_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium hover:bg-blue-700", data: { turbo: false } %>
+      <%= link_to "Nova empresa", new_company_path, class: "rounded-lg py-3 px-5 bg-[#1e73be] text-white block font-medium hover:bg-blue-600", data: { turbo: false } %>
     <% end %>
   </div>
 
-  <div class=" mt-5">
-    <table class="min-w-full divide-y divide-blue-100">
-      <thead class="bg-blue-400">
-        <tr>
-          <th class="px-6 py-3 text-left text-blue-900 font-bold">Nome</th>
-          <th class="px-6 py-3 text-left text-blue-900 font-bold">Categoria</th>
-          <th class="px-6 py-3 text-left text-blue-900 font-bold">Endereço</th>
-          <th class="px-6 py-3 text-left text-blue-900 font-bold">Bairro</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-blue-100">
-        <% @companies.each.with_index do |company, index| %>
-          <tr class="<%= index.odd? ? 'bg-blue-50' : 'bg-blue-100' %>">
-            <td class="px-6 py-4 whitespace-nowrap"><%= company.name %></td>
-            <td class="px-6 py-4 whitespace-nowrap"><%= company.category.name %></td>
-            <td class="px-6 py-4 whitespace-nowrap"><%= company.address_map %></td>
-            <td class="px-6 py-4 whitespace-nowrap"><%= company.neighborhood %></td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <%= link_to "Detalhes", company, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-blue-600 hover:bg-blue-200" %>
-            </td>
+  <div class="mt-5">
+    <% if @companies.any? %>
+      <table class="min-w-full divide-y divide-blue-100">
+        <thead class="bg-[#1e73be]">
+          <tr>
+            <th class="px-6 py-3 text-left text-slate-100 font-bold">Nome</th>
+            <th class="px-6 py-3 text-left text-slate-100 font-bold">Categoria</th>
+            <th class="px-6 py-3 text-left text-slate-100 font-bold">Endereço</th>
+            <th class="px-6 py-3 text-left text-slate-100 font-bold">Bairro</th>
+            <th class="px-6 py-3 text-left text-slate-100 font-bold">Dono/Responsável</th>
+            <th></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody class="divide-y divide-blue-100">
+          <% @companies.each.with_index do |company, index| %>
+            <tr class="<%= index.odd? ? 'bg-blue-50' : 'bg-blue-100' %>">
+              <td class="px-6 py-4 whitespace-nowrap"><%= company.name %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= company.category.name %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= company.address_map %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= company.neighborhood %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= company.member.name %></td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <%= link_to "Detalhes", company, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-blue-600 hover:bg-blue-200" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="text-center font-bold text-[#6a6c74] text-lg">Nenhuma empresa encontrada</p>
+    <% end %>
   </div>
 </div>

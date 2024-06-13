@@ -3,7 +3,8 @@ class CompaniesController < ApplicationController
 
   # GET /companies
   def index
-    @companies = Company.all
+    @q = Company.ransack(params[:q])
+    @companies = @q.result.includes(:category, :member)
   end
 
   # GET /companies/1
