@@ -21,6 +21,9 @@ default: &default
 
 development:
   <<: *default
+  username: postgres
+  password: postgres
+  host: localhost
   database: companies_canaa_development
 
   # The specified database role being used to connect to PostgreSQL.
