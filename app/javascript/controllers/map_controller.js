@@ -7,14 +7,18 @@ export default class extends Controller {
   static values = { readonly: Boolean }
 
   connect() {
-    let defaultLocation = [51.505, -0.09]
+    let defaultLocation = [-3.8022486, -38.53052872]
 
     if (this.latitudeTarget.value.length > 0 && this.longitudeTarget.value.length > 0) {
       defaultLocation = [this.latitudeTarget.value, this.longitudeTarget.value]
     }
 
     this.map = L.map(this.containerTarget).setView(defaultLocation, 18);
-    const provider = new GeoSearch.OpenStreetMapProvider();
+    const provider = new GeoSearch.OpenStreetMapProvider({
+      params: {
+        countrycodes: 'BR'
+      }
+    });
 
     L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
 
@@ -28,6 +32,9 @@ export default class extends Controller {
       });
 
       this.map.addControl(search);
+
+      const searchInput = search.searchElement.input
+      searchInput.placeholder = "Digite seu endereço aqui"
 
       this.map.on('geosearch/showlocation', (event) => {
         let latLng = event.marker.getLatLng()
