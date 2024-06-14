@@ -1,6 +1,7 @@
 databases:
   - name: companies_canaa_production
-    databaseName: companies_canaa_production_n4e5
+    ipAllowList: []
+    databaseName: companies_canaa_production
     user: companies_canaa
     plan: free
 
@@ -15,7 +16,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: companies_canaa_production_n4e5
+          name: companies_canaa_production
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
